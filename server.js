@@ -89,6 +89,8 @@ app.use(express.json())
 //-------importando el modulo Router---------------
 const productosRouter = require ('./routes/productosRouter')
 
+const randomsRouter = require ('./routes/randomsRouter')
+
 //----------importacion del arreglo de productos-------------
 const productos = require ('./routes/productosRouter') ['productos']
 //console.log(eventos)
@@ -365,6 +367,7 @@ app.use('/home'
               ,productosRouter
 )
 
+
 //----METODO LOGOUT que destruye la sesion--------
 app.get('/logout', (req, res, next) => {
 
@@ -389,3 +392,23 @@ app.get('/cookies', (req, res) =>{
 
 
 //----------------FIN SESSION---------------------------------------------
+
+app.use('/info', async function (req, res, next){
+
+    console.log('aca va la info')
+}
+)
+
+app.use('/randoms', async function (req, res, next){
+
+  const parametro = req.params.cant
+
+  if(req.params.cant){
+    console.log(req.params)
+    console.log('aca hay parametro de numero')
+  }else{
+    console.log(req.params)
+    console.log('aca no hay numero, usar default')
+  }
+}                 //,randomsRouter
+)
