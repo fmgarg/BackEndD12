@@ -15,10 +15,18 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require("bcrypt-nodejs");
 const flash = require('connect-flash')
+const parseArgs = require ('minimist')
 
 app.use(express.static('./public'))
 
-httpServer.listen(8080, () =>{ getAll(); console.log('servidor levantado puerto: 8080')})
+const options = {alias: {p: 'puerto'}, default: {puerto: 3000}}
+
+console.log(parseArgs(['-p', '5000'], options))
+
+
+const port = 8080
+
+httpServer.listen(port, () =>{ getAll(); console.log('servidor levantado puerto: 8080')})
 
 //-------BDD-ECOMMERCE--MONGO--ATLAS------------------
 

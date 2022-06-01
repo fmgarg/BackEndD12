@@ -1,20 +1,24 @@
-# Desafío "Formulario LogIn". 
+# Desafío "Usando el objeto PROCESS". 
 
-Este proyecto se encuentra realizado utilizando JS, NodeJS, express, express-handlebars, express-session, sockets.io y bootstrap, entre otras.
+Este proyecto se encuentra realizado utilizando JS, NodeJS, express, express-handlebars, express-session, passport-local, sockets.io y bootstrap, entre otras.
 
-Al ingresar a la ruta localhost:8080 te vas a encontrar con el formulario de login.
-Todos los usuarios tienen acceso a la ruta '/home' donde se encuentran las vistas del socket de  productos y mensajes. 
-Al hacer login se puede ver el nombre del user en el margen superior de la pagina junto a un boton de logout. El desde ahí puede agregar productos y mensajes en el chat.
+Al ingresar a la ruta localhost:8080/login te vas a encontrar con el formulario de login y la opción de registrarte.
+Al ingresar se accede a la ruta '/home' donde se encuentran las vistas del socket de  productos y mensajes. 
+Se puede ver el nombre del user en el margen superior de la pagina junto a un boton de logout. Desde ahí se pueden agregar productos y mensajes en el chat.
 
 Si se agota la sesión la página se recarga (usando window.location.reload del lado del front) y vuelve al login.
 
-Si el user hace un logout, visualiza durante 2 segundos el mensaje de despedida y es redirigido a la ruta del login (se utilizó un setTimeout con window.location hacia la ruta '/login')
+Si el user hace un logout es redirigido a la ruta del login.
 
 ## Consideraciones generales
 
-El proyecto corresponde al desafío de la clase 24 del curso de Back End en Coderhouse.
+El proyecto corresponde al desafío de la clase 28 del curso de Back End en Coderhouse.
 
 El nombre del usuario en los saludos NO esta hardcodeado sino que se obtiene a traves de socket desde una variable pusheada con req.session.user.
+
+Los usuarios son almacenados en la base de datos ecommerce en Mongo Atlas, lo mismo las sesiones.
+
+Las contraseñas se encryptan con la biblioteca bcrypt.
 
 #### `Acerca de mi`
 
