@@ -16,17 +16,23 @@ const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require("bcrypt-nodejs");
 const flash = require('connect-flash')
 const parseArgs = require ('minimist')
+const args = parseArgs(process.argv)
+require('dotenv').config()
 
 app.use(express.static('./public'))
 
-const options = {alias: {p: 'puerto'}, default: {puerto: 3000}}
+const options = {default: {puerto: 8080}}
 
-console.log(parseArgs(['-p', '5000'], options))
+//console.log(parseArgs(['-p', '5000'], options))
+//console.log(parseArgs(process.argv.slice(2), options))
 
+const parametros = parseArgs(process.argv.slice(2), options)
 
-const port = 8080
+console.log(parametros)
 
-httpServer.listen(port, () =>{ getAll(); console.log('servidor levantado puerto: 8080')})
+const port = parametros['puerto']
+
+httpServer.listen(port, () =>{ getAll(); console.log(`servidor levantado puerto:${port}`)})
 
 //-------BDD-ECOMMERCE--MONGO--ATLAS------------------
 
@@ -38,8 +44,8 @@ CRUD()
 
 async function CRUD() {
  try{ 
-      const DB = 'ecommerce'
-      const URL = `mongodb+srv://ex888gof:2013facu@cluster0.mnmsh.mongodb.net/${DB}?retryWrites=true&w=majority`
+      //const DB = 'ecommerce'
+      const URL = process.env.MGATLAS //`mongodb+srv://ex888gof:2013facu@cluster0.mnmsh.mongodb.net/${DB}?retryWrites=true&w=majority`
       
       let respueta = await mongoose.connect (
               URL
@@ -197,7 +203,7 @@ app.use(cookieParser())
 app.use(
   session({
     store: connectMongo.create ({
-          mongoUrl: 'mongodb+srv://ex888gof:2013facu@cluster0.mnmsh.mongodb.net/ecommerce?retryWrites=true&w=majority'
+          mongoUrl: process.env.MGATLAS //'mongodb+srv://ex888gof:2013facu@cluster0.mnmsh.mongodb.net/ecommerce?retryWrites=true&w=majority'
           ,ttl: 600
           ,autoRemove: 'disabled'
           ,mongoOptions: advanceOptions
