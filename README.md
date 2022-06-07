@@ -2,13 +2,13 @@
 
 Este proyecto se encuentra realizado utilizando JS, NodeJS, express, express-handlebars, express-session, passport-local, sockets.io y bootstrap, entre otras.
 
-Al ingresar a la ruta localhost:8080/login te vas a encontrar con el formulario de login y la opción de registrarte.
-Al ingresar se accede a la ruta '/home' donde se encuentran las vistas del socket de  productos y mensajes. 
-Se puede ver el nombre del user en el margen superior de la pagina junto a un boton de logout. Desde ahí se pueden agregar productos y mensajes en el chat.
+Al ingresar a la ruta localhost:8080/info encontrarás información que se obtiene a través del objeto PROCESS.
 
-Si se agota la sesión la página se recarga (usando window.location.reload del lado del front) y vuelve al login.
+AL ingresar a la ruta localhost:8080/randoms se activa un CHILD_PROCESS del archivo calc.js que se ejecuta en un hilo separado. Hay un parametro por default sino se puede cambiar el parámetro localhost:8080/randoms?cant=PARAMETRONUMERICO. 
 
-Si el user hace un logout es redirigido a la ruta del login.
+Las credenciales se movieron al archivo .env y se cargan mediante la librería dotenv.
+
+El puerto de escucha del servidor por default es 8080 pero se puede pasar otro por argumentos. Esto se realizó con la librería minimist.
 
 ## Consideraciones generales
 
