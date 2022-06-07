@@ -19,6 +19,7 @@ const parseArgs = require ('minimist')
 const args = parseArgs(process.argv)
 require('dotenv').config()
 
+
 app.use(express.static('./public'))
 
 const options = {default: {puerto: 8080}}
@@ -399,16 +400,4 @@ app.use('/info', async function (req, res, next){
 }
 )
 
-app.use('/randoms', async function (req, res, next){
-
-  const parametro = req.params.cant
-
-  if(req.params.cant){
-    console.log(req.params)
-    console.log('aca hay parametro de numero')
-  }else{
-    console.log(req.params)
-    console.log('aca no hay numero, usar default')
-  }
-}                 //,randomsRouter
-)
+app.use('/randoms',randomsRouter)
