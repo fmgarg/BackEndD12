@@ -396,7 +396,19 @@ app.get('/cookies', (req, res) =>{
 
 app.use('/info', async function (req, res, next){
 
-    console.log('aca va la info')
+  const objeto = {
+    datos: {
+      Argumentos: process.argv,
+      SO: process.platform,
+      NodeJSversion: process.version,
+      TotalUsagedRAM: process.memoryUsage(),
+      PathDeEjecucion: process.cwd(),
+      IDprocess: process.pid,
+    }
+  }
+  
+
+    res.send({objeto})
 }
 )
 
